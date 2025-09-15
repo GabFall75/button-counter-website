@@ -18,8 +18,7 @@ document.getElementById('submit-button').addEventListener('click', async () => {
         const data = await response.json();
 
         if (response.ok && data.success) {
-            // If the password is correct, we will redirect to the secret page.
-            // We'll add the true security later, this is for demonstration.
+            // If the password is correct, we'll redirect to the secret page.
             window.location.href = 'secret-page.html';
         } else {
             messageElement.textContent = data.message || 'Incorrect password.';
@@ -28,6 +27,6 @@ document.getElementById('submit-button').addEventListener('click', async () => {
     } catch (error) {
         console.error('Error during login:', error);
         messageElement.textContent = 'An error occurred. Please try again later.';
-        messageElement.style.color = 'red';
-    }
+            messageElement.style.color = 'red';
+        }
 });

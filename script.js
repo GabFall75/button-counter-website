@@ -1,3 +1,18 @@
+// --- Visitor Counter Logic ---
+const visitorCounterElement = document.getElementById("visitor-counter");
+
+// Fetch the visitor count when the page loads
+fetch('/.netlify/functions/visitor-counter')
+  .then(response => response.json())
+  .then(data => {
+    visitorCounterElement.textContent = data.count;
+  })
+  .catch(error => {
+    console.error('Error fetching visitor count:', error);
+    visitorCounterElement.textContent = 'Error';
+  });
+
+// --- Secure Login Logic ---
 document.getElementById('submit-button').addEventListener('click', async () => {
     const password = document.getElementById('password-input').value;
     const messageElement = document.getElementById('message');
@@ -18,7 +33,6 @@ document.getElementById('submit-button').addEventListener('click', async () => {
         const data = await response.json();
 
         if (response.ok && data.success) {
-            // If the password is correct, we'll redirect to the secret page.
             window.location.href = 'secret-page.html';
         } else {
             messageElement.textContent = data.message || 'Incorrect password.';
@@ -27,6 +41,6 @@ document.getElementById('submit-button').addEventListener('click', async () => {
     } catch (error) {
         console.error('Error during login:', error);
         messageElement.textContent = 'An error occurred. Please try again later.';
-            messageElement.style.color = 'red';
-        }
+        messageElement.style.color = 'red';
+    }
 });

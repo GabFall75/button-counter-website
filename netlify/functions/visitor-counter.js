@@ -1,23 +1,21 @@
-const fs = require('fs');
-const path = require('path');
+import { data } from '@netlify/functions';
+
+const KEY = 'visitorCount';
 
 exports.handler = async (event, context) => {
   try {
-    const filePath = path.join(process.cwd(), '.netlify', 'state', 'visitors.json');
-    
-    // Read the current count
-    const data = fs.readFileSync(filePath, 'utf-8');
-    let visitorData = JSON.parse(data);
+    // Get the current count from the data store. Default to 0 if it doesn't exist.
+    const currentCount = await data.get(KEY) || 0;
     
     // Increment the count
-    visitorData.count++;
+    const newCount = currentCount + 1;
     
-    // Write the new count back to the file
-    fs.writeFileSync(filePath, JSON.stringify(visitorData, null, 2));
-
+    // Set the new count in the data store
+    await data.set(KEY, newCount);
+    
     return {
       statusCode: 200,
-      body: JSON.stringify({ count: visitorData.count }),
+      body: JSON.stringify({ count: newCount }),
       headers: {
         "Content-Type": "application/json"
       }

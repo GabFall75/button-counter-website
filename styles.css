@@ -9,7 +9,14 @@ h1 {
     color: #333;
 }
 
-#counter {
+/* Visitor counter style */
+#visitor-counter {
+    font-weight: bold;
+    color: #28a745; /* A new color for this counter */
+}
+
+/* Click counter style */
+#click-counter {
     font-weight: bold;
     color: #007bff;
 }

@@ -1,25 +1,33 @@
-// --- Visitor Counter Logic ---
-const visitorCounterElement = document.getElementById("visitor-counter");
+document.getElementById('submit-button').addEventListener('click', async () => {
+    const password = document.getElementById('password-input').value;
+    const messageElement = document.getElementById('message');
+    
+    // Clear any previous messages
+    messageElement.textContent = '';
+    
+    // Make a POST request to the Netlify Function
+    try {
+        const response = await fetch('/.netlify/functions/check-password', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ password: password })
+        });
 
-// Fetch the visitor count from our Netlify Function when the page loads
-fetch('/.netlify/functions/visitor-counter')
-  .then(response => response.json())
-  .then(data => {
-    visitorCounterElement.textContent = data.count;
-  })
-  .catch(error => {
-    console.error('Error fetching visitor count:', error);
-    visitorCounterElement.textContent = 'Error';
-  });
+        const data = await response.json();
 
-
-// --- Click Counter Logic ---
-const clickCounterElement = document.getElementById("click-counter");
-const buttonElement = document.getElementById("click-button");
-
-let clickCount = 0;
-
-buttonElement.addEventListener("click", () => {
-    clickCount++;
-    clickCounterElement.textContent = clickCount;
+        if (response.ok && data.success) {
+            // If the password is correct, we will redirect to the secret page.
+            // We'll add the true security later, this is for demonstration.
+            window.location.href = 'secret-page.html';
+        } else {
+            messageElement.textContent = data.message || 'Incorrect password.';
+            messageElement.style.color = 'red';
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+        messageElement.textContent = 'An error occurred. Please try again later.';
+        messageElement.style.color = 'red';
+    }
 });

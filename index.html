@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combined Counters</title>
+    <title>Secure Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <h1>Website Counters</h1>
+    <h1>Secure Login</h1>
+    <p>Enter the password to access the secret page.</p>
 
-    <p>Visitors: <span id="visitor-counter">0</span></p>
-
-    <p>Clicks: <span id="click-counter">0</span></p>
-    <button id="click-button">Click Me</button>
+    <div id="login-form">
+        <input type="password" id="password-input" placeholder="Enter password">
+        <button id="submit-button">Login</button>
+        <p id="message"></p>
+    </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>

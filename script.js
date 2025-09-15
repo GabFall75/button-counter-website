@@ -1,17 +1,14 @@
-// Step 1: Get references to the HTML elements we need
+// Get a reference to the element that will display the count
 const counterElement = document.getElementById("counter");
-const buttonElement = document.getElementById("click-button");
 
-// Step 2: Create a variable to store the count
-let count = 0;
-
-// Step 3: Add a "click" event listener to the button
-buttonElement.addEventListener("click", () => {
-    // a. Increase the count by one
-    count++;
-
-    // b. Update the text of the counter element on the page
-    counterElement.textContent = count;
-});
-
-console.log("Hello from JavaScript!");
+// Fetch the visitor count from our Netlify Function
+fetch('/.netlify/functions/visitor-counter')
+  .then(response => response.json())
+  .then(data => {
+    // Update the counter on the page with the count from the function
+    counterElement.textContent = data.count;
+  })
+  .catch(error => {
+    console.error('Error fetching visitor count:', error);
+    counterElement.textContent = 'Error';
+  });

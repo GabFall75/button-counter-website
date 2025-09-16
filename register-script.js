@@ -2,6 +2,7 @@ document.getElementById('registration-form').addEventListener('submit', async (e
     event.preventDefault(); // Prevents the form from submitting in the traditional way
     
     const username = document.getElementById('username-input').value;
+    const email = document.getElementById('email-input').value;
     const password = document.getElementById('password-input').value;
     const messageElement = document.getElementById('message');
     
@@ -12,7 +13,7 @@ document.getElementById('registration-form').addEventListener('submit', async (e
         const response = await fetch('/.netlify/functions/register-user', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ username, email, password })
         });
 
         const data = await response.json();
@@ -20,7 +21,6 @@ document.getElementById('registration-form').addEventListener('submit', async (e
         if (response.ok && data.success) {
             messageElement.textContent = data.message;
             messageElement.style.color = 'green';
-            // In a real app, you might redirect the user to the login page after a successful registration
         } else {
             messageElement.textContent = data.message || 'Registration failed.';
             messageElement.style.color = 'red';

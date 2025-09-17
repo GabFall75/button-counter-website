@@ -27,7 +27,7 @@ exports.handler = async (event, context) => {
       const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
       const apiKey = apiInstance.authentications['apiKey'];
       apiKey.apiKey = process.env.BREVO_API_KEY;
-
+    
       const sendSmtpEmail = {
         to: [{ email: email, name: username }],
         sender: { email: 'your-email@example.com', name: 'Your Website Name' },
@@ -50,7 +50,6 @@ exports.handler = async (event, context) => {
         headers: { 'Content-Type': 'application/json' }
       };
     }
-
   } catch (error) {
     console.error('Registration function error:', error);
     return {

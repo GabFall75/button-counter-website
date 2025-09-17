@@ -1,5 +1,5 @@
 const { Client } = require('pg');
-var SibApiV3Sdk = require('sib-api-v3-sdk');
+const SibApiV3Sdk = require('sib-api-v3-sdk');
 
 exports.handler = async (event, context) => {
   const client = new Client({
@@ -24,9 +24,8 @@ exports.handler = async (event, context) => {
 
     if (res.rows.length > 0) {
       // --- Send Confirmation Email ---
-      var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-      var apiKey = apiInstance.authentications['apiKey'];
-      apiKey.apiKey = process.env.BREVO_API_KEY;
+      const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+      apiInstance.setApiKey(SibApiV3Sdk.TransactionalEmailsApi.Authentication.API_KEY, process.env.BREVO_API_KEY); // <--- THIS IS THE CORRECTED LINE
     
       const sendSmtpEmail = {
         to: [{ email: email, name: username }],

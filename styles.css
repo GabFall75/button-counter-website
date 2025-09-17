@@ -1,6 +1,14 @@
 body {
-	background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-    background-attachment: fixed; /* Optional: keeps the gradient from scrolling */
+   font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 50px;
+
+    /* Rainbow gradient */
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    background-attachment: fixed; 
+
+    /* Add this to improve text readability */
+    color: white;
 }
 
 h1 {

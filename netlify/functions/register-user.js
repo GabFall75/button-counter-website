@@ -25,10 +25,9 @@ exports.handler = async (event, context) => {
     if (res.rows.length > 0) {
       // --- Send Confirmation Email ---
       const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-      const apiKey = apiInstance.authentications['api-key']; // <--- THIS IS THE CORRECTED LINE
-      apiKey.apiKey = process.env.BREVO_API_KEY;
-    
-      const sendSmtpEmail = {
+	  apiInstance.authentications['api-key'].apiKey = process.env.BREVO_API_KEY; // <--- THIS IS THE CORRECTED LINE
+      
+	  const sendSmtpEmail = {
         to: [{ email: email, name: username }],
         sender: { email: 'your-email@example.com', name: 'Your Website Name' },
         subject: 'Registration Confirmation',

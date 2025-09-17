@@ -32,7 +32,7 @@ exports.handler = async (event, context) => {
       
       const sendSmtpEmail = {
         to: [{ email: email, name: username }],
-        sender: { email: 'your-email@example.com', name: 'Your Website Name' },
+        sender: { email: 'falgab1975@gmail.com', name: 'Gabriele Blog' },
         subject: 'Registration Confirmation',
         htmlContent: '<h1>Welcome to My Website!</h1><p>Thank you for registering. Your account is now active.</p>',
       };

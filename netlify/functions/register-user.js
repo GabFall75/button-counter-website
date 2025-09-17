@@ -1,9 +1,7 @@
 const { Client } = require('pg');
-const brevo = require('brevo');
+const SibApiV3Sdk = require('sib-api-v3-sdk');
 
 exports.handler = async (event, context) => {
-	// Add this line at the very beginning of the function
-  console.log('Function started.');
   const client = new Client({
     connectionString: process.env.NEON_DB_URL,
   });
@@ -25,13 +23,11 @@ exports.handler = async (event, context) => {
     const res = await client.query('INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING id', [username, password, email]);
 
     if (res.rows.length > 0) {
-      // --- Add this diagnostic line here ---
-      console.log('Code reached email sending section.');
-
-      const apiInstance = new brevo.TransactionalEmailsApi();
+      // --- Send Confirmation Email ---
+      const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
       const apiKey = apiInstance.authentications['apiKey'];
       apiKey.apiKey = process.env.BREVO_API_KEY;
-    
+
       const sendSmtpEmail = {
         to: [{ email: email, name: username }],
         sender: { email: 'your-email@example.com', name: 'Your Website Name' },
@@ -40,6 +36,7 @@ exports.handler = async (event, context) => {
       };
 
       await apiInstance.sendTransacEmail(sendSmtpEmail);
+      // --- End of Email Logic ---
 
       return {
         statusCode: 201,
@@ -48,11 +45,12 @@ exports.handler = async (event, context) => {
       };
     } else {
       return {
-      statusCode: 500,
-      body: JSON.stringify({ success: false, message: 'Registration failed.' }),
-      headers: { 'Content-Type': 'application/json' }
+        statusCode: 500,
+        body: JSON.stringify({ success: false, message: 'Registration failed.' }),
+        headers: { 'Content-Type': 'application/json' }
       };
     }
+
   } catch (error) {
     console.error('Registration function error:', error);
     return {

@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "@netlify/functions": "^4.2.5",
-	"brevo": "^1.0.0",
-    "pg": "^8.16.3"
+    "brevo": "^1.0.0",
+    "pg": "^8.16.3",
+    "sib-api-v3-sdk": "^8.5.0"
   }
 }

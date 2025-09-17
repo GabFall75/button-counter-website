@@ -2,6 +2,8 @@ const { Client } = require('pg');
 const brevo = require('@brevo.node/brevo-node');
 
 exports.handler = async (event, context) => {
+	// Add this line at the very beginning of the function
+  console.log('Function started.');
   const client = new Client({
     connectionString: process.env.NEON_DB_URL,
   });

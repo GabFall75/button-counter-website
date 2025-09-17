@@ -1,5 +1,5 @@
 const { Client } = require('pg');
-const SibApiV3Sdk = require('sib-api-v3-sdk');
+var SibApiV3Sdk = require('sib-api-v3-sdk');
 
 exports.handler = async (event, context) => {
   const client = new Client({
@@ -24,8 +24,8 @@ exports.handler = async (event, context) => {
 
     if (res.rows.length > 0) {
       // --- Send Confirmation Email ---
-      const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-      const apiKey = apiInstance.authentications['apiKey'];
+      var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+      var apiKey = apiInstance.authentications['apiKey'];
       apiKey.apiKey = process.env.BREVO_API_KEY;
     
       const sendSmtpEmail = {

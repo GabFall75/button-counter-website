@@ -1,5 +1,5 @@
 const { Client } = require('pg');
-const brevo = require('@brevo.node/brevo-node');
+const brevo = require('brevo');
 
 exports.handler = async (event, context) => {
 	// Add this line at the very beginning of the function

@@ -7,6 +7,12 @@ body {
     color: white;
 }
 
+body#blog-page {
+    background-image: linear-gradient(to bottom, #d4fc79, #96e6a1);
+    background-attachment: fixed;
+    color: black;
+}
+
 .text-container {
     background-color: rgba(0, 0, 0, 0.5); /* A semi-transparent black background */
     padding: 20px;

@@ -1,43 +1,61 @@
 body {
-   font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif;
     text-align: center;
     padding-top: 50px;
-
-    /* Rainbow gradient */
     background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-    background-attachment: fixed; 
-
-    /* Add this to improve text readability */
+    background-attachment: fixed;
     color: white;
 }
 
+.text-container {
+    background-color: rgba(0, 0, 0, 0.5); /* A semi-transparent black background */
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    margin: 0 auto; /* This centers the container */
+}
+
 h1 {
-    color: #333;
+    color: white;
+    text-shadow: 2px 2px 4px #000000; /* Adds a shadow to make the text pop */
 }
 
-/* Visitor counter style */
-#visitor-counter {
+label {
+    display: block;
+    margin-top: 10px;
     font-weight: bold;
-    color: #28a745; /* A new color for this counter */
 }
 
-/* Click counter style */
-#click-counter {
-    font-weight: bold;
-    color: #007bff;
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-#click-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
     border: none;
     border-radius: 5px;
     background-color: #007bff;
     color: white;
-    margin-top: 20px;
+    cursor: pointer;
 }
 
-#click-button:hover {
+button:hover {
     background-color: #0056b3;
+}
+
+#message {
+    font-weight: bold;
+    margin-top: 10px;
 }

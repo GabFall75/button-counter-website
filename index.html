@@ -8,16 +8,22 @@
 </head>
 <body>
 
-    <h1>Secure Login</h1>
-    <p>Visitors: <span id="visitor-counter">0</span></p>
+    <div class="text-container">
+        <h1>Secure Login</h1>
+        <p>Visitors: <span id="visitor-counter">0</span></p>
 
-    <div id="login-form">
-        <input type="password" id="password-input" placeholder="Enter password">
-        <button id="submit-button">Login</button>
-        <p id="message"></p>
+        <div id="login-form">
+            <label for="username-input">Username:</label>
+            <input type="text" id="username-input" required>
+            
+            <label for="password-input">Password:</label>
+            <input type="password" id="password-input" required>
+
+            <button id="submit-button">Login</button>
+            <p id="message"></p>
+        </div>
     </div>
-
+    
     <script src="script.js"></script>
-
 </body>
 </html>

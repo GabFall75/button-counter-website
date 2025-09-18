@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     padding-top: 50px;
-    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    background-image: linear-gradient(to right, #a18cd1, #fbc2eb);
     background-attachment: fixed;
     color: white;
 }
